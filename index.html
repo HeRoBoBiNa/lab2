@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой учебный сайт — Задание 2</title>
+  <!-- Все стили подключаются из отдельного файла -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ШАПКА: фон тянется на всю ширину окна -->
+  <header id="header">
+    <!-- внутренний блок ограничен 960px и выровнен по центру -->
+    <div class="container clearfix">
+
+      <!-- логотип обтекается текстом слева (float: left) -->
+      <img id="logo" src="image.png" alt="Логотип сайта" width="80" height="80">
+
+      <!-- МЕНЮ -->
+      <nav id="menu">
+        <ul class="menu-list">
+          <li class="menu-item"><a class="menu-link" href="#links">Ссылки</a></li>
+          <li class="menu-item"><a class="menu-link" href="#schedule">Таблица</a></li>
+          <li class="menu-item"><a class="menu-link" href="#feedback">Форма</a></li>
+        </ul>
+      </nav>
+
+      <!-- НАЗВАНИЕ САЙТА -->
+      <p id="site-name">Мой учебный сайт</p>
+
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЕ СОДЕРЖИМОЕ: ширина не более 960px, по центру -->
+  <main id="content" class="container">
+
+    <h1 class="page-title">Разработка пользовательского веб-интерфейса</h1>
+
+    <!-- 1. Список гиперссылок -->
+    <section id="links" class="block">
+      <h2 class="block-title">Список гиперссылок</h2>
+      <ul class="link-list">
+        <li><a href="https://developer.mozilla.org/ru/docs/Web/HTML">Справочник по HTML (MDN)</a></li>
+        <li><a href="https://developer.mozilla.org/ru/docs/Web/CSS">Справочник по CSS (MDN)</a></li>
+        <li><a href="https://validator.w3.org/">Валидатор разметки W3C</a></li>
+        <li><a href="https://docs.gitlab.com/ee/user/project/pages/">Документация GitLab Pages</a></li>
+        <li><a href="#header">Наверх страницы</a></li>
+      </ul>
+    </section>
+
+    <!-- 2. Таблица -->
+    <section id="schedule" class="block">
+      <h2 class="block-title">Таблица</h2>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <caption class="table-caption">Расписание занятий на неделю</caption>
+
+          <!-- строка-заголовок с названиями колонок -->
+          <thead>
+            <tr>
+              <th scope="col">День недели</th>
+              <th scope="col">Время</th>
+              <th scope="col">Дисциплина</th>
+              <th scope="col">Аудитория</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <!-- объединение ячеек по вертикали (2 строки) -->
+              <td class="merged" rowspan="2">Понедельник</td>
+              <td>09:00–10:30</td>
+              <td>Веб-разработка</td>
+              <td>101</td>
+            </tr>
+            <tr>
+              <td>10:40–12:10</td>
+              <td>Базы данных</td>
+              <td>204</td>
+            </tr>
+            <tr>
+              <td class="merged" rowspan="2">Вторник</td>
+              <td>09:00–10:30</td>
+              <td>Математический анализ</td>
+              <td>310</td>
+            </tr>
+            <tr>
+              <td>10:40–12:10</td>
+              <td>Иностранный язык</td>
+              <td>115</td>
+            </tr>
+            <tr>
+              <td>Среда</td>
+              <!-- объединение ячеек по горизонтали (3 колонки) -->
+              <td class="merged" colspan="3">Самостоятельная работа</td>
+            </tr>
+            <tr>
+              <td>Четверг</td>
+              <td>09:00–10:30</td>
+              <td>Веб-разработка (практика)</td>
+              <td>Компьютерный класс 3</td>
+            </tr>
+            <tr>
+              <td>Пятница</td>
+              <td>10:40–12:10</td>
+              <td>Физическая культура</td>
+              <td>Спортзал</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Форма -->
+    <section id="feedback" class="block">
+      <h2 class="block-title">Форма</h2>
+
+      <!-- Проверка полей встроена в HTML5: required, type и pattern.
+           Браузер не даст отправить форму, пока поля заполнены неверно. -->
+      <form class="form" method="get">
+
+        <!-- ФИО: только буквы (русские/латинские), пробелы и дефис — цифры запрещены -->
+        <p class="form-row">
+          <label class="form-label" for="fio">ФИО:</label>
+          <input class="form-field validated" type="text" id="fio" name="fio"
+                 placeholder="Иванов Иван Иванович" autocomplete="name" required
+                 pattern="[A-Za-zА-Яа-яЁё\s\-]+"
+                 title="Только буквы, пробелы и дефис, без цифр"
+                 aria-describedby="fio-hint">
+          <small class="form-hint" id="fio-hint">Только буквы, пробелы и дефис — цифры не допускаются</small>
+        </p>
+
+        <!-- E-mail: type="email" требует символ @, pattern — ещё и точку в домене -->
+        <p class="form-row">
+          <label class="form-label" for="email">E-mail:</label>
+          <input class="form-field validated" type="email" id="email" name="email"
+                 placeholder="ivan@example.com" autocomplete="email" required
+                 pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                 title="Адрес вида name@example.com, обязательно с символом @"
+                 aria-describedby="email-hint">
+          <small class="form-hint" id="email-hint">Обязательно с символом @, например name@example.com</small>
+        </p>
+
+        <!-- Телефон: только цифры, пробелы, скобки, дефис и + в начале — буквы запрещены -->
+        <p class="form-row">
+          <label class="form-label" for="phone">Телефон:</label>
+          <input class="form-field validated" type="tel" id="phone" name="phone"
+                 placeholder="+7 (900) 123-45-67" autocomplete="tel" required
+                 pattern="\+?[0-9\s\-\(\)]{7,20}"
+                 title="Только цифры, пробелы, скобки, дефис и + в начале, без букв"
+                 aria-describedby="phone-hint">
+          <small class="form-hint" id="phone-hint">Только цифры, пробелы, скобки и дефис — буквы не допускаются</small>
+        </p>
+
+        <!-- Дата рождения: календарь выбора даты -->
+        <p class="form-row">
+          <label class="form-label" for="birthdate">Дата рождения:</label>
+          <input class="form-field" type="date" id="birthdate" name="birthdate"
+                 min="1900-01-01" max="2026-09-29" autocomplete="bday">
+        </p>
+
+        <p class="form-row">
+          <label class="form-label" for="language">Любимый язык программирования:</label>
+          <select class="form-field" id="language" name="language" required>
+            <option value="">— выберите язык —</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="cpp">C++</option>
+            <option value="csharp">C#</option>
+            <option value="go">Go</option>
+            <option value="php">PHP</option>
+            <option value="other">Другой</option>
+          </select>
+        </p>
+
+        <p class="form-row">
+          <label class="form-label" for="bio">Биография:</label>
+          <textarea class="form-field" id="bio" name="bio" rows="5" cols="40"
+                    placeholder="Коротко расскажите о себе: где учитесь, чем увлекаетесь"></textarea>
+        </p>
+
+        <p class="form-row">
+          <label><input type="checkbox" name="agree" required> Согласен на обработку данных</label>
+        </p>
+
+        <p class="form-row">
+          <button class="button" type="submit">Отправить</button>
+          <button class="button button-secondary" type="reset">Очистить</button>
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ПОДВАЛ: фон тянется на всю ширину окна -->
+  <footer id="footer">
+    <div class="container">
+      <p class="copyright">&copy; 2026 Имя Фамилия</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

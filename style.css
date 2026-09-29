@@ -1,0 +1,302 @@
+/* =========================================================
+   Задание 2. Стили страницы
+   Стили подключаются через id (#) и классы (.)
+   ========================================================= */
+
+/* ---------- Общие настройки ---------- */
+
+/* убираем отступ по умолчанию у body, чтобы шапка
+   и подвал тянулись на всю ширину окна */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222;
+  background-color: #eef2f7;
+}
+
+/* Контейнер: максимальная ширина 960px, выравнивание по центру */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Очистка обтекания (float) внутри блока */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ---------- Шапка ---------- */
+
+#header {
+  width: 100%;
+  background-color: #2f5d8a;
+  color: #fff;
+  padding: 15px 0;
+}
+
+/* Логотип: круглая картинка, обтекается текстом слева */
+#logo {
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+/* Название сайта */
+#site-name {
+  margin: 10px 0 0;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ---------- Меню ---------- */
+
+#menu {
+  text-align: right;
+}
+
+.menu-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-item {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.menu-link {
+  display: block;
+  padding: 6px 14px;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  background-color: #4a7fb5;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+  background-color: #fff;
+  color: #2f5d8a;
+}
+
+/* ---------- Основное содержимое ---------- */
+
+#content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.page-title {
+  margin: 0 0 20px;
+  font-size: 26px;
+  color: #2f5d8a;
+}
+
+/* Блоки контента (список, таблица, форма) */
+.block {
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border: 1px solid #c9d6e5;
+  border-radius: 6px;
+}
+
+.block-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: #2f5d8a;
+  border-bottom: 2px solid #c9d6e5;
+  padding-bottom: 6px;
+}
+
+/* ---------- Список гиперссылок ---------- */
+
+.link-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.link-list a {
+  color: #2f5d8a;
+}
+
+.link-list a:hover {
+  color: #c0392b;
+}
+
+/* ---------- Таблица ---------- */
+
+/* обёртка даёт горизонтальную прокрутку на узких экранах */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+.table-caption {
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px 12px;
+  border: 1px solid #9fb6cf;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* строка-заголовок */
+.data-table th {
+  background-color: #2f5d8a;
+  color: #fff;
+}
+
+/* нечётные строки */
+.data-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* чётные строки — другой фон */
+.data-table tbody tr:nth-child(even) {
+  background-color: #dde8f4;
+}
+
+/* объединённые ячейки выделяем отдельно */
+.data-table .merged {
+  background-color: #fdf1d6;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* ---------- Форма ---------- */
+
+.form-row {
+  margin: 0 0 12px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.form-field {
+  width: 100%;
+  max-width: 400px;
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid #9fb6cf;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-field:focus {
+  outline: 2px solid #4a7fb5;
+  outline-offset: 1px;
+}
+
+/* Подсказка под полем */
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #5f6f82;
+}
+
+/* Проверка полей ФИО, e-mail и телефона.
+   :not(:placeholder-shown) — поле уже не пустое (пользователь начал ввод),
+   :invalid / :valid — значение не подходит / подходит под правила из HTML */
+.validated:not(:placeholder-shown):invalid {
+  border-color: #c0392b;
+  background-color: #fdecea;
+}
+
+.validated:not(:placeholder-shown):valid {
+  border-color: #2e8b57;
+  background-color: #eefaf2;
+}
+
+/* при ошибке подсказка под полем становится красной */
+.validated:not(:placeholder-shown):invalid + .form-hint {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.button {
+  padding: 8px 20px;
+  font: inherit;
+  color: #fff;
+  background-color: #2f5d8a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #244a6f;
+}
+
+.button-secondary {
+  background-color: #8a9bb0;
+}
+
+.button-secondary:hover {
+  background-color: #6f8199;
+}
+
+/* ---------- Подвал ---------- */
+
+#footer {
+  width: 100%;
+  background-color: #2f5d8a;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.copyright {
+  margin: 0;
+}
+
+/* ---------- Узкие экраны (телефоны) ---------- */
+
+@media (max-width: 600px) {
+  #logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 12px;
+  }
+
+  #site-name {
+    font-size: 22px;
+  }
+
+  .page-title {
+    font-size: 21px;
+  }
+
+  #menu {
+    text-align: left;
+  }
+
+  .menu-item {
+    margin: 0 5px 5px 0;
+  }
+}
